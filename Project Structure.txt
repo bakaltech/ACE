@@ -1,0 +1,11 @@
+ace-properties/
+├── index.html          (Home)
+├── residential.html    (Residential Services)
+├── commercial.html     (Commercial Services)
+├── about.html          (About / Team)
+├── contact.html        (Contact & Quote Form)
+├── css/
+│   └── style.css       (Shared styles)
+├── js/
+│   └── main.js         (Shared interactivity)
+└── assets/             (Optional: images, but we use icons)
