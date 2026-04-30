@@ -1,193 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn how Ace Properties manages residential and commercial properties with clear reporting, disciplined operations, and responsive service.">
-    <title>About | Ace Properties</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ace Properties – Clear Operations</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #4d4d4d;
+      --line: #d8dde2;
+      --strip: #f0f2f4;
+      --accent: #0f2b46;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .site-header {
+      height: 64px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .header-grid {
+      height: 48px;
+      align-items: center;
+    }
+
+    .logo {
+      grid-column: span 6;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .header-actions {
+      grid-column: span 6;
+      display: flex;
+      justify-content: flex-end;
+      gap: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      padding: 0 16px;
+      border: 2px solid var(--accent);
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 700;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--accent);
+    }
+
+    .button-primary:hover {
+      color: var(--white);
+      background: #143959;
+      text-decoration: none;
+    }
+
+    .button-secondary {
+      color: var(--accent);
+      background: var(--white);
+    }
+
+    .button-secondary:hover {
+      color: var(--white);
+      background: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero {
+      height: 192px;
+      padding: 48px 0;
+      background: var(--white);
+    }
+
+    .hero-grid {
+      min-height: 96px;
+      align-items: start;
+    }
+
+    .hero h1 {
+      grid-column: span 6;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      grid-column: span 6;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-label {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-rule {
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .work-card {
+      grid-column: span 4;
+      padding: 24px 0;
+    }
+
+    .work-card-number {
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .work-card-body {
+      border-top: 2px solid var(--accent);
+      padding-top: 8px;
+    }
+
+    .work-card h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .work-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .process-rail {
+      height: 176px;
+      align-items: stretch;
+    }
+
+    .process-step {
+      grid-column: span 3;
+      position: relative;
+      min-height: 176px;
+      padding: 24px 24px 24px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-top: 2px solid var(--accent);
+    }
+
+    .process-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -16px;
+      top: 72px;
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 700;
+    }
+
+    .process-number {
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .process-step h3 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .next-step {
+      padding: 48px 0;
+      background: var(--strip);
+    }
+
+    .next-copy {
+      grid-column: span 8;
+    }
+
+    .next-copy h2 {
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .next-copy p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .next-action {
+      grid-column: span 4;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .site-footer {
+      padding: 48px 0;
+      color: #d8dde2;
+      background: var(--text);
+      border-top: 2px solid var(--accent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+
+    .site-footer a {
+      display: block;
+      color: #f5f5f6;
+      font-size: 14px;
+      line-height: 24px;
+      transition: color 160ms ease;
+    }
+
+    .site-footer a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .footer-stack a + a {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 767px) {
+      .site-header {
+        height: auto;
+        padding: 8px 0;
+      }
+
+      .header-grid,
+      .hero-grid,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo,
+      .header-actions,
+      .hero h1,
+      .hero p,
+      .work-card,
+      .process-step,
+      .next-copy,
+      .next-action {
+        grid-column: auto;
+      }
+
+      .header-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .hero {
+        height: auto;
+        padding: 48px 0;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        line-height: 32px;
+      }
+
+      .work-card {
+        padding: 24px 0;
+      }
+
+      .process-rail {
+        height: auto;
+      }
+
+      .process-step {
+        min-height: auto;
+        padding: 24px 0;
+      }
+
+      .process-step:not(:last-child)::after {
+        content: "↓";
+        position: static;
+        display: block;
+        margin-top: 24px;
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      .next-action {
+        justify-content: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo"><a href="index.html">Ace<span class="dot">.</span>Properties</a></div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="residential.html">Residential</a>
-                <a href="commercial.html">Commercial</a>
-                <a href="about.html" class="active">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html" class="owner-portal"><i class="far fa-user-circle"></i> Owner Portal</a>
-                <a href="contact.html" class="btn-outline">Get a Quote</a>
+  <header class="site-header">
+    <div class="container grid header-grid">
+      <a class="logo" href="index.html">ACE PROPERTIES</a>
+      <nav class="header-actions" aria-label="Primary actions">
+        <a class="button button-primary" href="contact.html">Request Consultation</a>
+        <a class="button button-secondary" href="commercial.html">View Services</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container grid hero-grid">
+        <h1 id="hero-title">Property management built around clear operations.</h1>
+        <p>Ace Properties supports residential and commercial owners with leasing, tenant coordination, maintenance oversight, and practical reporting.</p>
+      </div>
+    </section>
+
+    <section class="section" id="how-we-work" aria-labelledby="work-title">
+      <div class="container">
+        <h2 class="section-label" id="work-title">HOW WE WORK</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+
+        <div class="grid">
+          <article class="work-card">
+            <p class="work-card-number">01</p>
+            <div class="work-card-body">
+              <h3>Documented Management</h3>
+              <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing depends on memory or informal follow-up.</p>
             </div>
+          </article>
+
+          <article class="work-card">
+            <p class="work-card-number">02</p>
+            <div class="work-card-body">
+              <h3>Clear Communication</h3>
+              <p>Owners receive direct updates with the issue, current status, recommended action, and expected timing.</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <p class="work-card-number">03</p>
+            <div class="work-card-body">
+              <h3>Risk-Aware Execution</h3>
+              <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent standards and written records.</p>
+            </div>
+          </article>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <main>
-        <section class="about-hero">
-            <div class="container about-hero-grid">
-                <div class="about-hero-copy fade-up">
-                    <div class="section-sub">About Ace Properties</div>
-                    <h1 class="section-title">Property management built around clear operations.</h1>
-                    <div class="divider"></div>
-                    <p class="section-copy">Ace Properties supports residential and commercial owners with leasing,
-                        tenant coordination, maintenance oversight, and practical reporting. The work is structured,
-                        documented, and focused on keeping properties occupied, cared for, and easier to manage.</p>
-                    <div class="about-actions">
-                        <a href="contact.html" class="btn-gold">Request a Consultation</a>
-                        <a href="commercial.html" class="btn-outline">View Services</a>
-                    </div>
-                </div>
-                <div class="about-visual fade-up" aria-label="Property operations overview">
-                    <div class="visual-panel visual-panel-main">
-                        <i class="fas fa-building"></i>
-                        <span>Residential + Commercial</span>
-                    </div>
-                    <div class="visual-panel">
-                        <strong>Leasing</strong>
-                        <span>Screening, showings, renewals</span>
-                    </div>
-                    <div class="visual-panel">
-                        <strong>Maintenance</strong>
-                        <span>Vendor coordination and follow-up</span>
-                    </div>
-                    <div class="visual-panel">
-                        <strong>Reporting</strong>
-                        <span>Owner updates with clear next steps</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="section" aria-labelledby="flow-title">
+      <div class="container">
+        <h2 class="section-label" id="flow-title">MANAGEMENT FLOW</h2>
+        <div class="section-rule" aria-hidden="true"></div>
 
-        <section class="container section-padding">
-            <div class="about-section-header fade-up">
-                <div class="section-sub">How We Work</div>
-                <h2 class="section-title">A practical operating model for every property.</h2>
-            </div>
-            <div class="about-principles">
-                <div class="principle-card fade-up">
-                    <i class="fas fa-clipboard-check"></i>
-                    <h3>Documented Management</h3>
-                    <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing
-                        depends on memory or informal follow-up.</p>
-                </div>
-                <div class="principle-card fade-up">
-                    <i class="fas fa-comments"></i>
-                    <h3>Clear Communication</h3>
-                    <p>Owners receive direct updates with the issue, current status, recommended action, and expected
-                        timing.</p>
-                </div>
-                <div class="principle-card fade-up">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Risk-Aware Execution</h3>
-                    <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent
-                        standards and written records.</p>
-                </div>
-            </div>
-        </section>
+        <div class="grid process-rail">
+          <article class="process-step">
+            <p class="process-number">1</p>
+            <h3>Property Review</h3>
+            <p>Confirm property details, lease status, and goals.</p>
+          </article>
 
-        <section class="about-band">
-            <div class="container about-process-grid">
-                <div class="fade-up">
-                    <div class="section-sub section-sub-light">Management Flow</div>
-                    <h2 class="section-title-light">From intake to ongoing operations.</h2>
-                    <p>Each property starts with a clear review of condition, occupancy, documentation, and immediate
-                        needs. From there, the management plan is organized into visible workflows.</p>
-                </div>
-                <div class="process-list fade-up">
-                    <div class="process-item">
-                        <span>01</span>
-                        <div>
-                            <h3>Property Review</h3>
-                            <p>Confirm property details, current lease status, maintenance needs, and owner goals.</p>
-                        </div>
-                    </div>
-                    <div class="process-item">
-                        <span>02</span>
-                        <div>
-                            <h3>Operating Plan</h3>
-                            <p>Set priorities for leasing, communication, maintenance, inspections, and reporting.</p>
-                        </div>
-                    </div>
-                    <div class="process-item">
-                        <span>03</span>
-                        <div>
-                            <h3>Active Management</h3>
-                            <p>Coordinate tenant requests, vendor work, owner approvals, and regular updates.</p>
-                        </div>
-                    </div>
-                    <div class="process-item">
-                        <span>04</span>
-                        <div>
-                            <h3>Review + Improve</h3>
-                            <p>Review recurring issues, upcoming renewals, and property performance opportunities.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <article class="process-step">
+            <p class="process-number">2</p>
+            <h3>Operating Plan</h3>
+            <p>Set priorities for leasing, communication, maintenance.</p>
+          </article>
 
-        <section class="container section-padding">
-            <div class="about-scope-grid">
-                <div class="scope-card fade-up">
-                    <i class="fas fa-home"></i>
-                    <h3>Residential Properties</h3>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Tenant placement and move-in coordination</li>
-                        <li><i class="fas fa-check"></i> Maintenance intake and vendor scheduling</li>
-                        <li><i class="fas fa-check"></i> Renewal support and owner communication</li>
-                    </ul>
-                </div>
-                <div class="scope-card fade-up">
-                    <i class="fas fa-city"></i>
-                    <h3>Commercial Properties</h3>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Lease administration and tenant coordination</li>
-                        <li><i class="fas fa-check"></i> Vendor access, service requests, and inspections</li>
-                        <li><i class="fas fa-check"></i> Practical reporting for operating decisions</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+          <article class="process-step">
+            <p class="process-number">3</p>
+            <h3>Active Management</h3>
+            <p>Coordinate tenant requests, vendor work, owner updates.</p>
+          </article>
 
-        <section class="about-cta">
-            <div class="container about-cta-inner fade-up">
-                <div>
-                    <div class="section-sub">Next Step</div>
-                    <h2>Need a property management review?</h2>
-                    <p>Share the property type, location, current occupancy, and the support you need. Ace Properties
-                        will respond with a clear path forward.</p>
-                </div>
-                <a href="contact.html" class="btn-navy">Contact Ace Properties</a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div>
-                <h4>Residential</h4><a href="residential.html">Tenant placement</a>
-            </div>
-            <div>
-                <h4>Commercial</h4><a href="commercial.html">Lease negotiation</a>
-            </div>
-            <div>
-                <h4>Company</h4><a href="about.html">About</a>
-            </div>
-            <div>
-                <h4>Legal</h4><a href="#">Privacy</a>
-            </div>
+          <article class="process-step">
+            <p class="process-number">4</p>
+            <h3>Review + Improve</h3>
+            <p>Review recurring issues, renewals, and performance opportunities.</p>
+          </article>
         </div>
-    </footer>
-    <a href="https://wa.me/?text=Hello%20Ace%20Properties" class="wa-float" id="whatsappBtn"><i class="fab fa-whatsapp"></i></a>
-    <script src="js/main.js"></script>
+      </div>
+    </section>
+
+    <section class="next-step" id="next-step" aria-labelledby="next-title">
+      <div class="container grid">
+        <div class="next-copy">
+          <h2 id="next-title">Need a property management review?</h2>
+          <p>Share property type, location, occupancy, and what support you need. We’ll respond with a clear path forward.</p>
+        </div>
+        <div class="next-action">
+          <a class="button button-primary" href="contact.html">Start Review</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a href="residential.html">Residential</a>
+      <a href="commercial.html">Commercial</a>
+      <a href="residential.html">Tenant Placement</a>
+      <a href="commercial.html">Lease Negotiation</a>
+      <nav class="footer-stack" aria-label="Company links">
+        <a href="about.html">Company</a>
+        <a href="#">Legal</a>
+        <a href="#">Privacy</a>
+      </nav>
+    </div>
+  </footer>
 </body>
-
 </html>
