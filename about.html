@@ -6,18 +6,18 @@
   <title>Ace Properties – Clear Operations</title>
   <style>
     :root {
-      --ink: #111827;
-      --muted: #5c6675;
-      --line: #dfe5ec;
-      --paper: #ffffff;
-      --soft: #f4f7fa;
-      --mist: #edf3f7;
-      --navy: #0f2b46;
-      --blue: #17466d;
-      --gold: #c59a3c;
-      --gold-soft: #f5ead0;
-      --shadow: 0 24px 80px rgba(15, 43, 70, 0.12);
-      --shadow-soft: 0 16px 44px rgba(15, 43, 70, 0.09);
+      --text: #1a1a1a;
+      --muted: #545b65;
+      --line: #e4e9ee;
+      --soft: #f3f6f9;
+      --strip: #eef3f7;
+      --accent: #0f2b46;
+      --accent-2: #17608a;
+      --gold: #caa451;
+      --gold-soft: #f7edd5;
+      --white: #ffffff;
+      --shadow: 0 22px 60px rgba(15, 43, 70, 0.12);
+      --shadow-soft: 0 16px 42px rgba(15, 43, 70, 0.09);
     }
 
     * {
@@ -32,14 +32,12 @@
     }
 
     body {
-      min-height: 100vh;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
       background:
-        linear-gradient(90deg, rgba(15, 43, 70, 0.04) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(15, 43, 70, 0.035) 1px, transparent 1px),
-        linear-gradient(180deg, #fbfcfd 0%, #ffffff 420px);
-      background-size: 80px 80px, 80px 80px, auto;
+        radial-gradient(circle at 8% 18%, rgba(202, 164, 81, 0.18), transparent 280px),
+        radial-gradient(circle at 92% 12%, rgba(23, 96, 138, 0.12), transparent 320px),
+        var(--white);
       font-size: 14px;
       line-height: 1.5;
     }
@@ -50,7 +48,7 @@
     }
 
     a:focus-visible {
-      outline: 3px solid rgba(197, 154, 60, 0.78);
+      outline: 3px solid rgba(202, 164, 81, 0.72);
       outline-offset: 4px;
     }
 
@@ -68,70 +66,59 @@
     }
 
     .site-header {
-      padding: 24px 0;
+      height: 72px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 32px rgba(15, 43, 70, 0.06);
+      backdrop-filter: blur(14px);
     }
 
-    .nav-shell {
-      min-height: 64px;
+    .header-grid {
+      height: 56px;
       align-items: center;
-      padding: 8px;
-      border: 1px solid rgba(15, 43, 70, 0.1);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.86);
-      box-shadow: 0 16px 50px rgba(15, 43, 70, 0.08);
-      backdrop-filter: blur(14px);
-      animation: drop-in 560ms ease both;
     }
 
     .logo {
-      grid-column: span 5;
+      grid-column: span 6;
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding-left: 16px;
-      color: var(--navy);
+      color: var(--accent);
       font-size: 16px;
       line-height: 24px;
       font-weight: 800;
       letter-spacing: 1px;
+      animation: fade-down 520ms ease both;
     }
 
-    .logo-mark {
-      width: 36px;
-      height: 36px;
+    .logo::before {
+      content: "";
+      width: 32px;
+      height: 32px;
       border-radius: 12px;
       background:
-        linear-gradient(135deg, var(--navy), var(--blue));
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-      position: relative;
-    }
-
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      right: 7px;
-      top: 7px;
-      border-radius: 50%;
-      background: var(--gold);
+        radial-gradient(circle at 70% 30%, var(--gold) 0 5px, transparent 6px),
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 28px rgba(15, 43, 70, 0.18);
     }
 
     .header-actions {
-      grid-column: span 7;
+      grid-column: span 6;
       display: flex;
       justify-content: flex-end;
-      gap: 12px;
+      gap: 16px;
+      animation: fade-down 560ms 80ms ease both;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
+      height: 48px;
       padding: 0 18px;
-      border: 1px solid var(--navy);
-      border-radius: 999px;
+      border: 2px solid var(--accent);
+      border-radius: 14px;
       font-size: 14px;
       line-height: 24px;
       font-weight: 800;
@@ -139,164 +126,93 @@
     }
 
     .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(15, 43, 70, 0.18);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(15, 43, 70, 0.18);
       text-decoration: none;
     }
 
     .button-primary {
-      color: #ffffff;
-      background: var(--navy);
+      color: var(--white);
+      background:
+        linear-gradient(135deg, var(--accent), #153b5c);
     }
 
     .button-secondary {
-      color: var(--navy);
-      background: #ffffff;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.76);
     }
 
     .button-secondary:hover {
-      color: #ffffff;
-      background: var(--navy);
+      color: var(--white);
+      background: var(--accent);
     }
 
     .hero {
-      padding: 64px 0;
-    }
-
-    .hero-layout {
-      align-items: stretch;
-    }
-
-    .hero-copy {
-      grid-column: span 7;
-      display: grid;
-      align-content: center;
-      min-height: 432px;
-      padding: 48px;
-      border-radius: 40px;
-      color: #ffffff;
-      background:
-        linear-gradient(135deg, rgba(15, 43, 70, 0.94), rgba(23, 70, 109, 0.92)),
-        var(--navy);
-      box-shadow: var(--shadow);
       position: relative;
+      height: 216px;
+      padding: 48px 0;
+      background:
+        linear-gradient(90deg, rgba(15, 43, 70, 0.07) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(15, 43, 70, 0.05) 1px, transparent 1px),
+        linear-gradient(135deg, #ffffff, #f8fbfd);
+      background-size: 96px 96px, 96px 96px, auto;
+      border-bottom: 1px solid var(--line);
       overflow: hidden;
-      animation: rise-in 700ms ease both;
     }
 
-    .hero-copy::before {
+    .hero::before {
       content: "";
       position: absolute;
-      inset: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 28px;
-      pointer-events: none;
-    }
-
-    .hero-copy::after {
-      content: "";
-      position: absolute;
+      width: 220px;
+      height: 220px;
       right: -80px;
-      bottom: 32px;
-      width: 280px;
-      height: 280px;
-      border: 42px solid rgba(197, 154, 60, 0.2);
-      border-radius: 60px;
+      top: -88px;
+      border-radius: 56px;
+      background: rgba(202, 164, 81, 0.16);
       transform: rotate(18deg);
     }
 
-    .eyebrow {
-      width: fit-content;
-      margin-bottom: 24px;
-      padding: 8px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      color: #f7e7bf;
-      background: rgba(255, 255, 255, 0.08);
-      font-size: 12px;
-      line-height: 16px;
-      font-weight: 800;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 148px;
+      height: 148px;
+      left: 48px;
+      bottom: -92px;
+      border-radius: 50%;
+      border: 28px solid rgba(23, 96, 138, 0.08);
+    }
+
+    .hero-grid {
       position: relative;
       z-index: 1;
+      min-height: 120px;
+      align-items: center;
     }
 
     .hero h1 {
-      max-width: 680px;
-      color: #ffffff;
-      font-size: clamp(40px, 5.5vw, 64px);
-      line-height: 1;
+      grid-column: span 6;
+      max-width: 520px;
+      font-size: 32px;
+      line-height: 40px;
       font-weight: 900;
-      letter-spacing: -1.8px;
-      position: relative;
-      z-index: 1;
+      letter-spacing: -0.8px;
+      animation: rise-in 620ms ease both;
     }
 
-    .hero-panel {
-      grid-column: span 5;
-      display: grid;
-      gap: 24px;
-      animation: rise-in 760ms 120ms ease both;
-    }
-
-    .summary-card,
-    .mini-card,
-    .work-card,
-    .process-step {
-      border: 1px solid rgba(15, 43, 70, 0.1);
+    .hero p {
+      grid-column: span 6;
+      max-width: 560px;
+      padding: 28px 32px;
+      border-top: 4px solid var(--accent);
+      border-radius: 0 0 24px 24px;
+      color: var(--muted);
       background: rgba(255, 255, 255, 0.9);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
-    }
-
-    .summary-card {
-      min-height: 264px;
-      padding: 32px;
-      border-radius: 32px;
-      border-top: 8px solid var(--gold);
-    }
-
-    .summary-card p {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 32px;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .mini-card {
-      min-height: 144px;
-      padding: 24px;
-      border-radius: 28px;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .mini-card:hover,
-    .work-card:hover,
-    .process-step:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 64px rgba(15, 43, 70, 0.16);
-    }
-
-    .mini-card strong {
-      display: block;
-      color: var(--navy);
-      font-size: 28px;
-      line-height: 32px;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .mini-card span {
-      color: var(--muted);
+      box-shadow: var(--shadow);
       font-size: 14px;
       line-height: 24px;
-      font-weight: 700;
+      backdrop-filter: blur(10px);
+      animation: rise-in 680ms 100ms ease both;
     }
 
     .section {
@@ -305,77 +221,97 @@
 
     .section-alt {
       background:
-        linear-gradient(180deg, rgba(15, 43, 70, 0.03), rgba(15, 43, 70, 0)),
-        var(--soft);
-    }
-
-    .section-head {
-      grid-column: span 12;
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 24px;
+        radial-gradient(circle at 12% 20%, rgba(202, 164, 81, 0.12), transparent 300px),
+        linear-gradient(180deg, var(--soft), var(--strip));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     .section-label {
-      color: var(--navy);
+      grid-column: span 12;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text);
       font-size: 16px;
       line-height: 24px;
       font-weight: 900;
-      letter-spacing: 1.4px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 8px rgba(202, 164, 81, 0.15);
     }
 
     .section-rule {
-      flex: 1;
-      height: 2px;
-      min-width: 120px;
-      background: linear-gradient(90deg, var(--gold), var(--navy));
+      grid-column: span 12;
+      width: 100%;
+      height: 3px;
+      margin-bottom: 24px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
       transform-origin: left;
-      animation: rule-grow 900ms ease both;
+      animation: rule-grow 800ms ease both;
     }
 
     .work-card {
       grid-column: span 4;
-      min-height: 304px;
-      padding: 32px;
-      border-radius: 32px;
-      border-top: 8px solid var(--gold);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-      animation: rise-in 650ms ease both;
+      padding: 0;
+      animation: rise-in 620ms ease both;
     }
 
-    .work-card:nth-child(3) {
-      animation-delay: 80ms;
+    .work-card:nth-of-type(2) {
+      animation-delay: 90ms;
     }
 
-    .work-card:nth-child(4) {
-      animation-delay: 160ms;
+    .work-card:nth-of-type(3) {
+      animation-delay: 180ms;
     }
 
     .work-card-number {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 52px;
-      height: 52px;
-      margin-bottom: 24px;
-      border-radius: 18px;
-      color: var(--navy);
+      height: 40px;
+      min-width: 48px;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      color: var(--accent);
       background: var(--gold-soft);
-      font-size: 16px;
+      font-size: 14px;
       line-height: 24px;
       font-weight: 900;
     }
 
+    .work-card-body {
+      min-height: 184px;
+      padding: 28px;
+      border-top: 4px solid var(--accent);
+      border-radius: 0 0 24px 24px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow-soft);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .work-card:hover .work-card-body {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 30px 70px rgba(15, 43, 70, 0.15);
+    }
+
     .work-card h3,
     .process-step h3 {
-      color: var(--ink);
-      font-size: 18px;
+      font-size: 16px;
       line-height: 24px;
       font-weight: 900;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
 
     .work-card p,
@@ -390,27 +326,37 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
+      align-items: stretch;
     }
 
     .process-step {
-      min-height: 232px;
-      padding: 32px 24px;
-      border-radius: 32px;
       position: relative;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-      animation: rise-in 650ms ease both;
+      min-height: 200px;
+      padding: 28px;
+      border-top: 4px solid var(--accent);
+      border-radius: 0 0 24px 24px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow-soft);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      animation: rise-in 620ms ease both;
     }
 
     .process-step:nth-child(2) {
-      animation-delay: 80ms;
+      animation-delay: 90ms;
     }
 
     .process-step:nth-child(3) {
-      animation-delay: 160ms;
+      animation-delay: 180ms;
     }
 
     .process-step:nth-child(4) {
-      animation-delay: 240ms;
+      animation-delay: 270ms;
+    }
+
+    .process-step:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 30px 70px rgba(15, 43, 70, 0.15);
     }
 
     .process-step:not(:last-child)::after {
@@ -419,74 +365,75 @@
       right: -18px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--gold);
-      font-size: 24px;
+      color: var(--accent);
+      font-size: 20px;
       line-height: 24px;
       font-weight: 900;
       z-index: 2;
     }
 
     .process-number {
-      color: var(--gold);
-      font-size: 42px;
-      line-height: 48px;
-      font-weight: 900;
-      letter-spacing: -1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
       margin-bottom: 24px;
+      border-radius: 16px;
+      color: var(--accent);
+      background: var(--gold-soft);
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 900;
     }
 
     .next-step {
       padding: 64px 0;
       background:
-        linear-gradient(135deg, rgba(15, 43, 70, 0.94), rgba(23, 70, 109, 0.9)),
-        var(--navy);
+        linear-gradient(135deg, rgba(15, 43, 70, 0.08), rgba(202, 164, 81, 0.1)),
+        #f7fafc;
+      border-bottom: 1px solid var(--line);
     }
 
-    .next-card {
-      grid-column: span 12;
-      display: grid;
-      grid-template-columns: 8fr 4fr;
-      gap: 24px;
-      align-items: center;
-      padding: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 36px;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
-      animation: rise-in 650ms ease both;
+    .next-copy {
+      grid-column: span 8;
+      animation: rise-in 620ms ease both;
     }
 
     .next-copy h2 {
-      color: #ffffff;
-      font-size: 32px;
-      line-height: 40px;
+      font-size: 24px;
+      line-height: 32px;
       font-weight: 900;
-      letter-spacing: -0.8px;
-      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+      margin-bottom: 24px;
     }
 
     .next-copy p {
-      max-width: 680px;
-      color: #d9e4ec;
+      max-width: 760px;
+      color: var(--muted);
       font-size: 14px;
       line-height: 24px;
     }
 
     .next-action {
+      grid-column: span 4;
       display: flex;
+      align-items: center;
       justify-content: flex-end;
+      animation: rise-in 620ms 90ms ease both;
     }
 
     .next-action .button-primary {
-      color: var(--navy);
-      border-color: var(--gold);
-      background: var(--gold);
+      border-color: var(--accent);
+      border-radius: 14px;
     }
 
     .site-footer {
-      padding: 48px 0;
+      padding: 56px 0;
       color: #d8dde2;
-      background: #111827;
+      background:
+        radial-gradient(circle at 88% 0%, rgba(23, 96, 138, 0.26), transparent 320px),
+        linear-gradient(135deg, #15191d, #0f2b46);
       border-top: 4px solid var(--gold);
     }
 
@@ -498,7 +445,7 @@
 
     .site-footer a {
       display: block;
-      color: #f5f7fa;
+      color: #f5f5f6;
       font-size: 14px;
       line-height: 24px;
       font-weight: 700;
@@ -515,10 +462,10 @@
       margin-top: 8px;
     }
 
-    @keyframes drop-in {
+    @keyframes fade-down {
       from {
         opacity: 0;
-        transform: translateY(-14px);
+        transform: translateY(-12px);
       }
       to {
         opacity: 1;
@@ -529,11 +476,11 @@
     @keyframes rise-in {
       from {
         opacity: 0;
-        transform: translateY(22px) scale(0.985);
+        transform: translateY(18px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
     }
 
@@ -557,50 +504,45 @@
       }
     }
 
-    @media (max-width: 900px) {
-      .grid,
-      .process-rail,
-      .next-card {
+    @media (max-width: 767px) {
+      .site-header {
+        height: auto;
+      }
+
+      .header-grid,
+      .hero-grid,
+      .grid {
         grid-template-columns: 1fr;
       }
 
       .logo,
       .header-actions,
-      .hero-copy,
-      .hero-panel,
-      .section-head,
+      .hero h1,
+      .hero p,
       .work-card,
       .process-rail,
-      .next-card {
+      .next-copy,
+      .next-action {
         grid-column: auto;
-      }
-
-      .nav-shell {
-        gap: 16px;
       }
 
       .header-actions {
         justify-content: flex-start;
         flex-wrap: wrap;
-        padding: 0 16px 16px;
       }
 
       .hero {
+        height: auto;
         padding: 48px 0;
       }
 
-      .hero-copy {
-        min-height: auto;
-        padding: 40px 32px;
-      }
-
       .hero h1 {
-        font-size: 42px;
-        line-height: 44px;
+        font-size: 28px;
+        line-height: 32px;
       }
 
-      .section-head {
-        display: grid;
+      .process-rail {
+        grid-template-columns: 1fr;
       }
 
       .process-step:not(:last-child)::after {
@@ -620,59 +562,25 @@
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 479px) {
       .container {
         padding: 0 24px;
-      }
-
-      .site-header,
-      .hero,
-      .section,
-      .next-step,
-      .site-footer {
-        padding-top: 48px;
-        padding-bottom: 48px;
-      }
-
-      .logo {
-        padding-left: 8px;
       }
 
       .button {
         width: 100%;
       }
 
-      .mini-grid,
       .footer-grid {
         grid-template-columns: 1fr;
-      }
-
-      .summary-card,
-      .work-card,
-      .process-step,
-      .next-card {
-        border-radius: 24px;
-      }
-
-      .hero h1 {
-        font-size: 34px;
-        line-height: 36px;
-      }
-
-      .next-copy h2 {
-        font-size: 28px;
-        line-height: 32px;
       }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container grid nav-shell">
-      <a class="logo" href="index.html" aria-label="Ace Properties home">
-        <span class="logo-mark" aria-hidden="true"></span>
-        ACE PROPERTIES
-      </a>
+    <div class="container grid header-grid">
+      <a class="logo" href="index.html">ACE PROPERTIES</a>
       <nav class="header-actions" aria-label="Primary actions">
         <a class="button button-primary" href="contact.html">Request Consultation</a>
         <a class="button button-secondary" href="commercial.html">View Services</a>
@@ -682,62 +590,47 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <div class="container grid hero-layout">
-        <div class="hero-copy">
-          <p class="eyebrow">Clear property operations</p>
-          <h1 id="hero-title">Property management built around clear operations.</h1>
-        </div>
-        <aside class="hero-panel" aria-label="Ace Properties service summary">
-          <div class="summary-card">
-            <p>Ace Properties supports residential and commercial owners with leasing, tenant coordination, maintenance oversight, and practical reporting.</p>
-          </div>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <strong>01</strong>
-              <span>Leasing and tenant coordination</span>
-            </div>
-            <div class="mini-card">
-              <strong>02</strong>
-              <span>Maintenance and owner reporting</span>
-            </div>
-          </div>
-        </aside>
+      <div class="container grid hero-grid">
+        <h1 id="hero-title">Property management built around clear operations.</h1>
+        <p>Ace Properties supports residential and commercial owners with leasing, tenant coordination, maintenance oversight, and practical reporting.</p>
       </div>
     </section>
 
     <section class="section" id="how-we-work" aria-labelledby="work-title">
       <div class="container grid">
-        <div class="section-head">
-          <h2 class="section-label" id="work-title">How We Work</h2>
-          <div class="section-rule" aria-hidden="true"></div>
-        </div>
+        <h2 class="section-label" id="work-title">How We Work</h2>
+        <div class="section-rule" aria-hidden="true"></div>
 
         <article class="work-card">
           <p class="work-card-number">01</p>
-          <h3>Documented Management</h3>
-          <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing depends on memory or informal follow-up.</p>
+          <div class="work-card-body">
+            <h3>Documented Management</h3>
+            <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing depends on memory or informal follow-up.</p>
+          </div>
         </article>
 
         <article class="work-card">
           <p class="work-card-number">02</p>
-          <h3>Clear Communication</h3>
-          <p>Owners receive direct updates with the issue, current status, recommended action, and expected timing.</p>
+          <div class="work-card-body">
+            <h3>Clear Communication</h3>
+            <p>Owners receive direct updates with the issue, current status, recommended action, and expected timing.</p>
+          </div>
         </article>
 
         <article class="work-card">
           <p class="work-card-number">03</p>
-          <h3>Risk-Aware Execution</h3>
-          <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent standards and written records.</p>
+          <div class="work-card-body">
+            <h3>Risk-Aware Execution</h3>
+            <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent standards and written records.</p>
+          </div>
         </article>
       </div>
     </section>
 
     <section class="section section-alt" aria-labelledby="flow-title">
       <div class="container grid">
-        <div class="section-head">
-          <h2 class="section-label" id="flow-title">Management Flow</h2>
-          <div class="section-rule" aria-hidden="true"></div>
-        </div>
+        <h2 class="section-label" id="flow-title">Management Flow</h2>
+        <div class="section-rule" aria-hidden="true"></div>
 
         <div class="process-rail">
           <article class="process-step">
@@ -769,14 +662,12 @@
 
     <section class="next-step" id="next-step" aria-labelledby="next-title">
       <div class="container grid">
-        <div class="next-card">
-          <div class="next-copy">
-            <h2 id="next-title">Need a property management review?</h2>
-            <p>Share property type, location, occupancy, and what support you need. We’ll respond with a clear path forward.</p>
-          </div>
-          <div class="next-action">
-            <a class="button button-primary" href="contact.html">Start Review</a>
-          </div>
+        <div class="next-copy">
+          <h2 id="next-title">Need a property management review?</h2>
+          <p>Share property type, location, occupancy, and what support you need. We’ll respond with a clear path forward.</p>
+        </div>
+        <div class="next-action">
+          <a class="button button-primary" href="contact.html">Start Review</a>
         </div>
       </div>
     </section>
