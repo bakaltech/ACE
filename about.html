@@ -6,12 +6,18 @@
   <title>Ace Properties – Clear Operations</title>
   <style>
     :root {
-      --text: #1a1a1a;
-      --muted: #4d4d4d;
-      --line: #d8dde2;
-      --strip: #f0f2f4;
-      --accent: #0f2b46;
-      --white: #ffffff;
+      --ink: #111827;
+      --muted: #5c6675;
+      --line: #dfe5ec;
+      --paper: #ffffff;
+      --soft: #f4f7fa;
+      --mist: #edf3f7;
+      --navy: #0f2b46;
+      --blue: #17466d;
+      --gold: #c59a3c;
+      --gold-soft: #f5ead0;
+      --shadow: 0 24px 80px rgba(15, 43, 70, 0.12);
+      --shadow-soft: 0 16px 44px rgba(15, 43, 70, 0.09);
     }
 
     * {
@@ -22,14 +28,18 @@
 
     html {
       font-size: 14px;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
+      min-height: 100vh;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--ink);
       background:
-        linear-gradient(180deg, rgba(15, 43, 70, 0.035) 0, rgba(15, 43, 70, 0) 320px),
-        var(--white);
+        linear-gradient(90deg, rgba(15, 43, 70, 0.04) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(15, 43, 70, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, #fbfcfd 0%, #ffffff 420px);
+      background-size: 80px 80px, 80px 80px, auto;
       font-size: 14px;
       line-height: 1.5;
     }
@@ -39,13 +49,8 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
+    a:focus-visible {
+      outline: 3px solid rgba(197, 154, 60, 0.78);
       outline-offset: 4px;
     }
 
@@ -63,204 +68,337 @@
     }
 
     .site-header {
-      height: 64px;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 12px 32px rgba(15, 43, 70, 0.06);
+      padding: 24px 0;
     }
 
-    .header-grid {
-      height: 48px;
+    .nav-shell {
+      min-height: 64px;
       align-items: center;
+      padding: 8px;
+      border: 1px solid rgba(15, 43, 70, 0.1);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 16px 50px rgba(15, 43, 70, 0.08);
+      backdrop-filter: blur(14px);
+      animation: drop-in 560ms ease both;
     }
 
     .logo {
-      grid-column: span 6;
+      grid-column: span 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 16px;
+      color: var(--navy);
       font-size: 16px;
       line-height: 24px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      right: 7px;
+      top: 7px;
+      border-radius: 50%;
+      background: var(--gold);
     }
 
     .header-actions {
-      grid-column: span 6;
+      grid-column: span 7;
       display: flex;
       justify-content: flex-end;
-      gap: 24px;
+      gap: 12px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 48px;
-      padding: 0 16px;
-      border: 2px solid var(--accent);
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--navy);
+      border-radius: 999px;
       font-size: 14px;
       line-height: 24px;
-      font-weight: 700;
-      box-shadow: 0 0 0 rgba(15, 43, 70, 0);
-      transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(15, 43, 70, 0.16);
+      box-shadow: 0 14px 30px rgba(15, 43, 70, 0.18);
+      text-decoration: none;
     }
 
     .button-primary {
-      color: var(--white);
-      background: var(--accent);
-    }
-
-    .button-primary:hover {
-      color: var(--white);
-      background: #143959;
-      text-decoration: none;
+      color: #ffffff;
+      background: var(--navy);
     }
 
     .button-secondary {
-      color: var(--accent);
-      background: var(--white);
+      color: var(--navy);
+      background: #ffffff;
     }
 
     .button-secondary:hover {
-      color: var(--white);
-      background: var(--accent);
-      text-decoration: none;
+      color: #ffffff;
+      background: var(--navy);
     }
 
     .hero {
-      height: 192px;
-      padding: 48px 0;
-      background:
-        linear-gradient(90deg, rgba(15, 43, 70, 0.08) 0 2px, transparent 2px 100%),
-        var(--white);
-      background-size: calc((100% - 64px) / 12) 100%;
-      border-bottom: 1px solid var(--line);
+      padding: 64px 0;
     }
 
-    .hero-grid {
-      min-height: 96px;
-      align-items: start;
+    .hero-layout {
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      grid-column: span 7;
+      display: grid;
+      align-content: center;
+      min-height: 432px;
+      padding: 48px;
+      border-radius: 40px;
+      color: #ffffff;
+      background:
+        linear-gradient(135deg, rgba(15, 43, 70, 0.94), rgba(23, 70, 109, 0.92)),
+        var(--navy);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      animation: rise-in 700ms ease both;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: 32px;
+      width: 280px;
+      height: 280px;
+      border: 42px solid rgba(197, 154, 60, 0.2);
+      border-radius: 60px;
+      transform: rotate(18deg);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin-bottom: 24px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      color: #f7e7bf;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
-      grid-column: span 6;
-      font-size: 32px;
-      line-height: 40px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      animation: rise-in 520ms ease both;
+      max-width: 680px;
+      color: #ffffff;
+      font-size: clamp(40px, 5.5vw, 64px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -1.8px;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero p {
-      grid-column: span 6;
-      max-width: 560px;
+    .hero-panel {
+      grid-column: span 5;
+      display: grid;
+      gap: 24px;
+      animation: rise-in 760ms 120ms ease both;
+    }
+
+    .summary-card,
+    .mini-card,
+    .work-card,
+    .process-step {
+      border: 1px solid rgba(15, 43, 70, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+
+    .summary-card {
+      min-height: 264px;
+      padding: 32px;
+      border-radius: 32px;
+      border-top: 8px solid var(--gold);
+    }
+
+    .summary-card p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 32px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .mini-card {
+      min-height: 144px;
+      padding: 24px;
+      border-radius: 28px;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .mini-card:hover,
+    .work-card:hover,
+    .process-step:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 64px rgba(15, 43, 70, 0.16);
+    }
+
+    .mini-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .mini-card span {
       color: var(--muted);
       font-size: 14px;
       line-height: 24px;
-      padding: 24px;
-      border-top: 2px solid var(--accent);
-      background: var(--white);
-      box-shadow: 0 16px 40px rgba(15, 43, 70, 0.08);
-      animation: rise-in 620ms 80ms ease both;
+      font-weight: 700;
     }
 
     .section {
-      padding: 48px 0;
+      padding: 64px 0;
     }
 
-    .section:nth-of-type(3) {
-      background: var(--strip);
+    .section-alt {
+      background:
+        linear-gradient(180deg, rgba(15, 43, 70, 0.03), rgba(15, 43, 70, 0)),
+        var(--soft);
+    }
+
+    .section-head {
+      grid-column: span 12;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
     }
 
     .section-label {
+      color: var(--navy);
       font-size: 16px;
       line-height: 24px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      margin-bottom: 8px;
     }
 
     .section-rule {
-      width: 100%;
+      flex: 1;
       height: 2px;
-      background: var(--accent);
-      margin-bottom: 24px;
+      min-width: 120px;
+      background: linear-gradient(90deg, var(--gold), var(--navy));
       transform-origin: left;
-      animation: rule-grow 700ms ease both;
+      animation: rule-grow 900ms ease both;
     }
 
     .work-card {
       grid-column: span 4;
-      padding: 24px 0;
-      animation: rise-in 620ms ease both;
-    }
-
-    .work-card:nth-child(2) {
-      animation-delay: 80ms;
+      min-height: 304px;
+      padding: 32px;
+      border-radius: 32px;
+      border-top: 8px solid var(--gold);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      animation: rise-in 650ms ease both;
     }
 
     .work-card:nth-child(3) {
+      animation-delay: 80ms;
+    }
+
+    .work-card:nth-child(4) {
       animation-delay: 160ms;
     }
 
     .work-card-number {
-      color: var(--accent);
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .work-card-body {
-      border-top: 2px solid var(--accent);
-      padding: 24px;
-      background: var(--white);
-      box-shadow: 0 14px 36px rgba(15, 43, 70, 0.08);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .work-card-body:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 48px rgba(15, 43, 70, 0.14);
-    }
-
-    .work-card h3 {
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
       margin-bottom: 24px;
+      border-radius: 18px;
+      color: var(--navy);
+      background: var(--gold-soft);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 900;
     }
 
-    .work-card p {
+    .work-card h3,
+    .process-step h3 {
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .work-card p,
+    .process-step p {
       color: var(--muted);
       font-size: 14px;
       line-height: 24px;
     }
 
     .process-rail {
-      height: 176px;
-      align-items: stretch;
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
     }
 
     .process-step {
-      grid-column: span 3;
+      min-height: 232px;
+      padding: 32px 24px;
+      border-radius: 32px;
       position: relative;
-      min-height: 176px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-top: 2px solid var(--accent);
-      background: var(--white);
-      box-shadow: 0 14px 36px rgba(15, 43, 70, 0.08);
-      animation: rise-in 620ms ease both;
       transition: transform 180ms ease, box-shadow 180ms ease;
+      animation: rise-in 650ms ease both;
     }
 
     .process-step:nth-child(2) {
@@ -275,83 +413,81 @@
       animation-delay: 240ms;
     }
 
-    .process-step:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 48px rgba(15, 43, 70, 0.14);
-    }
-
     .process-step:not(:last-child)::after {
       content: "→";
       position: absolute;
-      right: -16px;
-      top: 72px;
-      color: var(--accent);
-      font-size: 20px;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 24px;
       line-height: 24px;
-      font-weight: 700;
+      font-weight: 900;
+      z-index: 2;
     }
 
     .process-number {
-      color: var(--accent);
-      font-size: 20px;
-      line-height: 24px;
-      font-weight: 700;
+      color: var(--gold);
+      font-size: 42px;
+      line-height: 48px;
+      font-weight: 900;
+      letter-spacing: -1px;
       margin-bottom: 24px;
-    }
-
-    .process-step h3 {
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-
-    .process-step p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 24px;
     }
 
     .next-step {
-      padding: 48px 0;
+      padding: 64px 0;
       background:
-        linear-gradient(135deg, rgba(15, 43, 70, 0.08), rgba(15, 43, 70, 0)),
-        var(--strip);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+        linear-gradient(135deg, rgba(15, 43, 70, 0.94), rgba(23, 70, 109, 0.9)),
+        var(--navy);
     }
 
-    .next-copy {
-      grid-column: span 8;
+    .next-card {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 8fr 4fr;
+      gap: 24px;
+      align-items: center;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+      animation: rise-in 650ms ease both;
     }
 
     .next-copy h2 {
-      font-size: 20px;
-      line-height: 24px;
-      font-weight: 700;
-      margin-bottom: 24px;
+      color: #ffffff;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
     }
 
     .next-copy p {
-      color: var(--muted);
+      max-width: 680px;
+      color: #d9e4ec;
       font-size: 14px;
       line-height: 24px;
     }
 
     .next-action {
-      grid-column: span 4;
       display: flex;
-      align-items: center;
       justify-content: flex-end;
+    }
+
+    .next-action .button-primary {
+      color: var(--navy);
+      border-color: var(--gold);
+      background: var(--gold);
     }
 
     .site-footer {
       padding: 48px 0;
       color: #d8dde2;
-      background:
-        linear-gradient(135deg, #1a1a1a, #102437),
-        var(--text);
-      border-top: 2px solid var(--accent);
+      background: #111827;
+      border-top: 4px solid var(--gold);
     }
 
     .footer-grid {
@@ -362,29 +498,42 @@
 
     .site-footer a {
       display: block;
-      color: #f5f5f6;
+      color: #f5f7fa;
       font-size: 14px;
       line-height: 24px;
-      transition: color 160ms ease;
+      font-weight: 700;
+      transition: color 160ms ease, transform 160ms ease;
     }
 
     .site-footer a:hover {
-      color: var(--white);
-      text-decoration: underline;
+      color: var(--gold);
+      transform: translateX(4px);
+      text-decoration: none;
     }
 
     .footer-stack a + a {
       margin-top: 8px;
     }
 
-    @keyframes rise-in {
+    @keyframes drop-in {
       from {
         opacity: 0;
-        transform: translateY(16px);
+        transform: translateY(-14px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
     }
 
@@ -408,66 +557,58 @@
       }
     }
 
-    @media (max-width: 767px) {
-      .site-header {
-        height: auto;
-        padding: 8px 0;
-      }
-
-      .header-grid,
-      .hero-grid,
-      .grid {
+    @media (max-width: 900px) {
+      .grid,
+      .process-rail,
+      .next-card {
         grid-template-columns: 1fr;
       }
 
       .logo,
       .header-actions,
-      .hero h1,
-      .hero p,
+      .hero-copy,
+      .hero-panel,
+      .section-head,
       .work-card,
-      .process-step,
-      .next-copy,
-      .next-action {
+      .process-rail,
+      .next-card {
         grid-column: auto;
+      }
+
+      .nav-shell {
+        gap: 16px;
       }
 
       .header-actions {
         justify-content: flex-start;
         flex-wrap: wrap;
-        gap: 24px;
+        padding: 0 16px 16px;
       }
 
       .hero {
-        height: auto;
         padding: 48px 0;
-        background-size: 64px 100%;
+      }
+
+      .hero-copy {
+        min-height: auto;
+        padding: 40px 32px;
       }
 
       .hero h1 {
-        font-size: 28px;
-        line-height: 32px;
+        font-size: 42px;
+        line-height: 44px;
       }
 
-      .work-card {
-        padding: 24px 0;
-      }
-
-      .process-rail {
-        height: auto;
-      }
-
-      .process-step {
-        min-height: auto;
-        padding: 24px;
+      .section-head {
+        display: grid;
       }
 
       .process-step:not(:last-child)::after {
         content: "↓";
         position: static;
         display: block;
+        transform: none;
         margin-top: 24px;
-        font-size: 20px;
-        line-height: 24px;
       }
 
       .next-action {
@@ -476,25 +617,62 @@
 
       .footer-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
       }
     }
 
-    @media (max-width: 479px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 520px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .site-header,
+      .hero,
+      .section,
+      .next-step,
+      .site-footer {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      .logo {
+        padding-left: 8px;
       }
 
       .button {
         width: 100%;
+      }
+
+      .mini-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card,
+      .work-card,
+      .process-step,
+      .next-card {
+        border-radius: 24px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+        line-height: 36px;
+      }
+
+      .next-copy h2 {
+        font-size: 28px;
+        line-height: 32px;
       }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container grid header-grid">
-      <a class="logo" href="index.html">ACE PROPERTIES</a>
+    <div class="container grid nav-shell">
+      <a class="logo" href="index.html" aria-label="Ace Properties home">
+        <span class="logo-mark" aria-hidden="true"></span>
+        ACE PROPERTIES
+      </a>
       <nav class="header-actions" aria-label="Primary actions">
         <a class="button button-primary" href="contact.html">Request Consultation</a>
         <a class="button button-secondary" href="commercial.html">View Services</a>
@@ -504,51 +682,64 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <div class="container grid hero-grid">
-        <h1 id="hero-title">Property management built around clear operations.</h1>
-        <p>Ace Properties supports residential and commercial owners with leasing, tenant coordination, maintenance oversight, and practical reporting.</p>
+      <div class="container grid hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Clear property operations</p>
+          <h1 id="hero-title">Property management built around clear operations.</h1>
+        </div>
+        <aside class="hero-panel" aria-label="Ace Properties service summary">
+          <div class="summary-card">
+            <p>Ace Properties supports residential and commercial owners with leasing, tenant coordination, maintenance oversight, and practical reporting.</p>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <strong>01</strong>
+              <span>Leasing and tenant coordination</span>
+            </div>
+            <div class="mini-card">
+              <strong>02</strong>
+              <span>Maintenance and owner reporting</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section class="section" id="how-we-work" aria-labelledby="work-title">
-      <div class="container">
-        <h2 class="section-label" id="work-title">HOW WE WORK</h2>
-        <div class="section-rule" aria-hidden="true"></div>
-
-        <div class="grid">
-          <article class="work-card">
-            <p class="work-card-number">01</p>
-            <div class="work-card-body">
-              <h3>Documented Management</h3>
-              <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing depends on memory or informal follow-up.</p>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <p class="work-card-number">02</p>
-            <div class="work-card-body">
-              <h3>Clear Communication</h3>
-              <p>Owners receive direct updates with the issue, current status, recommended action, and expected timing.</p>
-            </div>
-          </article>
-
-          <article class="work-card">
-            <p class="work-card-number">03</p>
-            <div class="work-card-body">
-              <h3>Risk-Aware Execution</h3>
-              <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent standards and written records.</p>
-            </div>
-          </article>
+      <div class="container grid">
+        <div class="section-head">
+          <h2 class="section-label" id="work-title">How We Work</h2>
+          <div class="section-rule" aria-hidden="true"></div>
         </div>
+
+        <article class="work-card">
+          <p class="work-card-number">01</p>
+          <h3>Documented Management</h3>
+          <p>Property details, tenant needs, maintenance items, and owner decisions are tracked so nothing depends on memory or informal follow-up.</p>
+        </article>
+
+        <article class="work-card">
+          <p class="work-card-number">02</p>
+          <h3>Clear Communication</h3>
+          <p>Owners receive direct updates with the issue, current status, recommended action, and expected timing.</p>
+        </article>
+
+        <article class="work-card">
+          <p class="work-card-number">03</p>
+          <h3>Risk-Aware Execution</h3>
+          <p>Leasing, inspections, vendor coordination, and tenant requests are handled with consistent standards and written records.</p>
+        </article>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="flow-title">
-      <div class="container">
-        <h2 class="section-label" id="flow-title">MANAGEMENT FLOW</h2>
-        <div class="section-rule" aria-hidden="true"></div>
+    <section class="section section-alt" aria-labelledby="flow-title">
+      <div class="container grid">
+        <div class="section-head">
+          <h2 class="section-label" id="flow-title">Management Flow</h2>
+          <div class="section-rule" aria-hidden="true"></div>
+        </div>
 
-        <div class="grid process-rail">
+        <div class="process-rail">
           <article class="process-step">
             <p class="process-number">1</p>
             <h3>Property Review</h3>
@@ -578,12 +769,14 @@
 
     <section class="next-step" id="next-step" aria-labelledby="next-title">
       <div class="container grid">
-        <div class="next-copy">
-          <h2 id="next-title">Need a property management review?</h2>
-          <p>Share property type, location, occupancy, and what support you need. We’ll respond with a clear path forward.</p>
-        </div>
-        <div class="next-action">
-          <a class="button button-primary" href="contact.html">Start Review</a>
+        <div class="next-card">
+          <div class="next-copy">
+            <h2 id="next-title">Need a property management review?</h2>
+            <p>Share property type, location, occupancy, and what support you need. We’ll respond with a clear path forward.</p>
+          </div>
+          <div class="next-action">
+            <a class="button button-primary" href="contact.html">Start Review</a>
+          </div>
         </div>
       </div>
     </section>
